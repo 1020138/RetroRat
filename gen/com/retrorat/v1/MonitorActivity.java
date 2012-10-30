@@ -116,88 +116,6 @@ public class MonitorActivity extends MyActivity {
 				// TODO Auto-generated method stub
 			}
         });
-        final ToggleButton togglebutton2 = (ToggleButton) findViewById(R.id.toggleButton2);
-        togglebutton2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (togglebutton2.isChecked()) {
-					String relay1 = "c21";
-					try {
-						if (outputStream != null) {
-							synchronized (obj2) {
-								outputStream.write(relay1.getBytes());
-							}
-						} else {
-							Toast.makeText(getBaseContext(),
-									"failed to send 2... ",
-									Toast.LENGTH_SHORT).show();
-						}
-					} catch (IOException e) {
-						Log.e(TAG, ">>", e);
-						e.printStackTrace();
-					}
-                } else {
-                    String relay1 = "c20";
-					try {
-						if (outputStream != null) {
-							synchronized (obj2) {
-								outputStream.write(relay1.getBytes());
-							}
-						} else {
-							Toast.makeText(getBaseContext(),
-									"failed to send 2... ",
-									Toast.LENGTH_SHORT).show();
-						}
-					} catch (IOException e) {
-						Log.e(TAG, ">>", e);
-						e.printStackTrace();
-					}
-                }
-				// TODO Auto-generated method stub
-			}
-        });
-        final ToggleButton togglebutton3 = (ToggleButton) findViewById(R.id.toggleButton3);
-        togglebutton3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (togglebutton3.isChecked()) {
-					String relay1 = "c31";
-					try {
-						if (outputStream != null) {
-							synchronized (obj2) {
-								outputStream.write(relay1.getBytes());
-							}
-						} else {
-							Toast.makeText(getBaseContext(),
-									"failed to send 3... ",
-									Toast.LENGTH_SHORT).show();
-						}
-					} catch (IOException e) {
-						Log.e(TAG, ">>", e);
-						e.printStackTrace();
-					}
-                } else {
-                    String relay1 = "c30";
-					try {
-						if (outputStream != null) {
-							synchronized (obj2) {
-								outputStream.write(relay1.getBytes());
-							}
-						} else {
-							Toast.makeText(getBaseContext(),
-									"failed to send 3... ",
-									Toast.LENGTH_SHORT).show();
-						}
-					} catch (IOException e) {
-						Log.e(TAG, ">>", e);
-						e.printStackTrace();
-					}
-                }
-				// TODO Auto-generated method stub
-			}
-        });
         final ToggleButton togglebutton4 = (ToggleButton) findViewById(R.id.toggleButton4);
         togglebutton4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -406,10 +324,16 @@ public class MonitorActivity extends MyActivity {
         });
         
         Button pushButton = (Button) findViewById(R.id.button1);
-        pushButton.setOnTouchListener(tListener1);
+        pushButton.setOnTouchListener(startButtonListener);
+        
+        Button pushDriverButton = (Button) findViewById(R.id.toggleButton2);
+        pushDriverButton.setOnTouchListener(driverDoorListener);
+        
+        Button pushPassengerButton = (Button) findViewById(R.id.toggleButton3);
+        pushPassengerButton.setOnTouchListener(passengerDoorListener);
 	}
 	
-	private OnTouchListener tListener1 = new OnTouchListener(){
+	private OnTouchListener startButtonListener = new OnTouchListener(){
         public boolean onTouch(View v, MotionEvent event) {
            switch ( event.getAction() ) {
             case MotionEvent.ACTION_DOWN: 
@@ -449,6 +373,88 @@ public class MonitorActivity extends MyActivity {
            return false;
         }  
    };
+   
+   private OnTouchListener driverDoorListener = new OnTouchListener(){
+       public boolean onTouch(View v, MotionEvent event) {
+          switch ( event.getAction() ) {
+           case MotionEvent.ACTION_DOWN: 
+           	String relay1 = "c21";
+				try {
+					if (outputStream != null) {
+						synchronized (obj2) {
+							outputStream.write(relay1.getBytes());
+						}
+					} else {
+						Toast.makeText(getBaseContext(),
+								"failed to send start... ",
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (IOException e) {
+					Log.e(TAG, ">>", e);
+					e.printStackTrace();
+				}
+				return false;
+           case MotionEvent.ACTION_UP:
+           	String relay2 = "c20";
+				try {
+					if (outputStream != null) {
+						synchronized (obj2) {
+							outputStream.write(relay2.getBytes());
+						}
+					} else {
+						Toast.makeText(getBaseContext(),
+								"failed to send ... ",
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (IOException e) {
+					Log.e(TAG, ">>", e);
+					e.printStackTrace();
+				}
+           }
+          return false;
+       }  
+  };
+  
+  private OnTouchListener passengerDoorListener = new OnTouchListener(){
+      public boolean onTouch(View v, MotionEvent event) {
+         switch ( event.getAction() ) {
+          case MotionEvent.ACTION_DOWN: 
+          	String relay1 = "c31";
+				try {
+					if (outputStream != null) {
+						synchronized (obj2) {
+							outputStream.write(relay1.getBytes());
+						}
+					} else {
+						Toast.makeText(getBaseContext(),
+								"failed to send start... ",
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (IOException e) {
+					Log.e(TAG, ">>", e);
+					e.printStackTrace();
+				}
+				return false;
+          case MotionEvent.ACTION_UP:
+          	String relay2 = "c30";
+				try {
+					if (outputStream != null) {
+						synchronized (obj2) {
+							outputStream.write(relay2.getBytes());
+						}
+					} else {
+						Toast.makeText(getBaseContext(),
+								"failed to send ... ",
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (IOException e) {
+					Log.e(TAG, ">>", e);
+					e.printStackTrace();
+				}
+          }
+         return false;
+      }  
+ };
 
 	/* after select, connect to device */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

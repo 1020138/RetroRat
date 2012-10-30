@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:padding="10dip" >
-
+
     <ToggleButton
         android:id="@+id/toggleButton1"
         android:layout_width="wrap_content"
@@ -11,11 +11,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
-        android:textOn="#1 Bank On"
-        android:textOff="#1 Bank Off"
-        android:text="ToggleButton" />
+        android:text="ToggleButton"
+        android:textOff="Power Off"
+        android:textOn="Power On" />
 
-    <ToggleButton
+    <Button
         android:id="@+id/toggleButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,11 +23,9 @@
         android:layout_alignRight="@+id/toggleButton1"
         android:layout_below="@+id/toggleButton1"
         android:layout_marginTop="20dp"
-        android:textOn="#2 Bank On"
-        android:textOff="#2 Bank Off"
-        android:text="ToggleButton" />
+        android:text="Driver Door" />
 
-    <ToggleButton
+    <Button
         android:id="@+id/toggleButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,9 +33,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/toggleButton2"
         android:layout_marginTop="20dp"
-        android:textOn="#3 Bank On"
-        android:textOff="#3 Bank Off"
-        android:text="ToggleButton" />
+        android:text="Passenger Door" />
 
     <ToggleButton
         android:id="@+id/toggleButton4"
